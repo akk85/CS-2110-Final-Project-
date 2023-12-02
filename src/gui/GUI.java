@@ -1,5 +1,6 @@
 package gui;
 
+import game.GUIControl;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
@@ -64,12 +65,12 @@ public class GUI extends JFrame {
     /**
      * Panel that provides more info on selected tile
      */
-    private TileSelectPanel tileSelect;
+    private final TileSelectPanel tileSelect;
 
     /**
      * The panel that holds all other panels
      */
-    private JLayeredPane master;
+    private final JLayeredPane master;
 
     /**
      * Width and height of the error pane (in pixels)
@@ -249,5 +250,6 @@ public class GUI extends JFrame {
     public synchronized void finishAnimating() {
         animating = false;
            // TODO: support concurrency better
+        GUIControl.notifyAnimationFinished();
     }
 }

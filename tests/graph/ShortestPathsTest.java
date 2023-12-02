@@ -121,9 +121,41 @@ public class ShortestPathsTest {
         assertEquals(9, ssp.getDistance("b"));
         List<int[]> path = ssp.bestPath("b");
         assertEquals(1, path.size());
-        //assertEquals("a", graph.source(path.get(0)));
-        //assertEquals("b", graph.dest(path.get(0)));
+        assertEquals("a", graph.source(path.get(0)));
+        assertEquals("b", graph.dest(path.get(0)));
 
+    }
+
+    @Test
+        //Test case 6: No path exists
+    void testNoPathExists() {
+        String[] vertices = {"a", "b", "c", "d", "e", "f", "g", "h"};
+        int[][] edges = {
+                {0, 1, 9}, {0, 2, 14}, {0, 3, 15},
+                {1, 4, 23},
+                {2, 4, 17}, {2, 3, 5}, {2, 5, 30},
+                {3, 5, 20}, {3, 6, 37},
+                {4, 5, 3}, {4, 6, 20},
+                {5, 6, 16}
+        };
+        TestGraph graph = new TestGraph(vertices, edges);
+        ShortestPaths<String, int[]> ssp = new ShortestPaths<>(graph);
+        ssp.singleSourceDistances("a");
+        assertThrows(AssertionError.class, () -> ssp.getDistance("h"));
+
+    }
+
+    @Test
+        //Test case 7: LargeWeight and overflow
+    void testLargeWeights() {
+        String[] vertices = {"a", "b", "c"};
+        int[][] edges = {{0, 1, Integer.MAX_VALUE}, {1, 2, 1}};
+        TestGraph graph = new TestGraph(vertices, edges);
+
+        ShortestPaths<String, int[]> ssp = new ShortestPaths<>(graph);
+        ssp.singleSourceDistances("a");
+
+        assertEquals((double) Integer.MAX_VALUE + 1, ssp.getDistance("c"));
     }
 
 }

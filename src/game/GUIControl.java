@@ -9,6 +9,8 @@ import gui.GUI;
  */
 public class GUIControl {
 
+    private static final Object lock = new Object();
+
     /**
      * No objects.
      */
@@ -29,7 +31,22 @@ public class GUIControl {
     public static void waitForAnimation(Maybe<GUI> guiOpt) {
         // TODO: Avoid inefficient spinning while waiting for GUI
         guiOpt.thenDo(gui -> {
-           while (gui.isAnimating()) {}
+            synchronized (lock) {
+                while (gui.isAnimating()) {
+                    try {
+                        lock.wait();
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        throw new RuntimeException("Interrupted while waiting for animation");
+                    }
+                }
+            }
         });
+    }
+
+    public static void notifyAnimationFinished() {
+        synchronized (lock) {
+            lock.notifyAll();
+        }
     }
 }
