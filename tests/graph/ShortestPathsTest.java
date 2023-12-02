@@ -113,5 +113,17 @@ public class ShortestPathsTest {
 
    @Test
     //Test Cse 5: Path to a vertex with direct connection
+    void testDirectConnection(){
+        TestGraph graph = testGraph1();
+        ShortestPaths<String, int[]> ssp = new ShortestPaths<>(graph);
+        ssp.singleSourceDistances("a");
+
+        assertEquals(9, ssp.getDistance("b"));
+        List<int[]> path = ssp.bestPath("b");
+        assertEquals(1, path.size());
+        assertEquals("a", graph.source(path.get(0)));
+        assertEquals("b", graph.dest(path.get(0)));
+
+    }
 
 }
