@@ -1,0 +1,35 @@
+# Assignment 6 reflection
+
+## Submitter metadata
+
+Partner 1: Firstname Lastname (NetID)  - TODO
+Partner 2: Firstname Lastname (NetID)  - delete if working solo
+
+Hours spent working on this assignment: 0.0  - TODO
+
+## Verification questions
+
+1. How many coins does your McDiver collect when running with a seed of
+   `-4004310660161599891`?
+
+   Answer: TODO
+
+## Reflection questions
+
+1. Describe your "scram" strategy at a high level.  How does McDiver decide
+   which coin to collect next, and how does he ensure he always escapes in time?
+   Also describe how you came up with this strategy and why you settled on it.
+
+   Answer: TODO
+
+2. Are you aware of any areas where your submission is not working as intended?
+   If so, describe the issue and what you did to try to diagnose it.  Otherwise,
+   describe how you verified that your submission fulfilled its requirements.
+
+   Answer: TODO
+
+3. Did you implement your own priority queue, or add other new classes to the
+   project?  If so, describe them here so your grader is aware of their
+   existence.
+
+   Answer: TODO
