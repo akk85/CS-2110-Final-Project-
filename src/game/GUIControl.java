@@ -34,7 +34,7 @@ public class GUIControl {
             synchronized (lock) {
                 while (gui.isAnimating()) {
                     try {
-                        lock.wait();
+                        lock.wait();  //WE WAIT INSTEAD OF SPINNING
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                         throw new RuntimeException("Interrupted while waiting for animation");
@@ -46,7 +46,7 @@ public class GUIControl {
 
     public static void notifyAnimationFinished() {
         synchronized (lock) {
-            lock.notifyAll();
+            lock.notifyAll(); //Notify all waiting threads
         }
     }
 }

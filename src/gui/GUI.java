@@ -250,6 +250,6 @@ public class GUI extends JFrame {
     public synchronized void finishAnimating() {
         animating = false;
            // TODO: support concurrency better
-        GUIControl.notifyAnimationFinished();
+        GUIControl.notifyAnimationFinished();  // we Notify waiting threads
     }
 }

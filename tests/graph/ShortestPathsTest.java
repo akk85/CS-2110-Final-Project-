@@ -54,6 +54,7 @@ public class ShortestPathsTest {
     }
 
     @Test
+        //Example test case
     void lectureNotesTest() {
         TestGraph graph = testGraph1();
         ShortestPaths<String, int[]> ssp = new ShortestPaths<>(graph);
@@ -79,9 +80,16 @@ public class ShortestPathsTest {
         TestGraph graph = new TestGraph(vertices, edges);
         ShortestPaths<String, int[]> ssp = new ShortestPaths<>(graph);
         ssp.singleSourceDistances("a");
+
         assertEquals(20, ssp.getDistance("d"));
+
         List<int[]> path = ssp.bestPath("d");
         assertEquals(2, path.size());
+        assertTrue(
+                (graph.source(path.get(0)).equals("a") && graph.dest(path.get(1)).equals("d")) ||
+                        (graph.source(path.get(0)).equals("a") && graph.dest(path.get(1))
+                                .equals("d"))
+        );
     }
 
     @Test
@@ -96,9 +104,9 @@ public class ShortestPathsTest {
                 {5, 6, 16}
         };
         TestGraph graph = new TestGraph(vertices, edges);
-
         ShortestPaths<String, int[]> ssp = new ShortestPaths<>(graph);
         ssp.singleSourceDistances("a");
+
         assertThrows(AssertionError.class, () -> ssp.getDistance("h"));
    }
    @Test
@@ -119,6 +127,7 @@ public class ShortestPathsTest {
         ssp.singleSourceDistances("a");
 
         assertEquals(9, ssp.getDistance("b"));
+
         List<int[]> path = ssp.bestPath("b");
         assertEquals(1, path.size());
         assertEquals("a", graph.source(path.get(0)));
