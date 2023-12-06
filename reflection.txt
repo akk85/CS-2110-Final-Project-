@@ -2,17 +2,17 @@
 
 ## Submitter metadata
 
-Partner 1: Firstname Lastname (NetID)  - TODO
-Partner 2: Firstname Lastname (NetID)  - delete if working solo
+Partner 1: Tony Kariuki (akk85)
+Partner 2: Kofi Ohene (kao65)
 
-Hours spent working on this assignment: 0.0  - TODO
+Hours spent working on this assignment: 26hrs
 
 ## Verification questions
 
 1. How many coins does your McDiver collect when running with a seed of
    `-4004310660161599891`?
 
-   Answer: TODO
+   Answer: 395
 
 ## Reflection questions
 
@@ -20,16 +20,48 @@ Hours spent working on this assignment: 0.0  - TODO
    which coin to collect next, and how does he ensure he always escapes in time?
    Also describe how you came up with this strategy and why you settled on it.
 
-   Answer: TODO
+   Answer:
+
+   Initially, I created a graph representation of the sewer system using the Maze class and then
+   utilized the ShortestPaths algorithm to determine the shortest path from McDiver's current
+   location to the exit.This path is critical as it sets the baseline for the minimum steps
+   required to escape, ensuring McDiver does not get trapped in the maze. McDiver follows a
+   coin collection approach that prioritizes coins based on their value-to-distance ratio.
+   This means McDiver prefers coins that offer higher value and are closer to his current location.
+   In the collectCoins method, McDiver assesses each neighbor node of his current position.
+   He then calculates the value of coins on each neighboring node and the steps required to reach
+   there.  Additionally, McDiver computes the distance from each neighbor to the exit using
+   shortestPaths.getDistance(neighbor). This calculation is crucial to ensure that he still has
+   enough steps left to reach the exit after collecting the coins. After evaluating the neighboring
+   nodes, if a node with a favorable coin value is found and McDiver has enough steps left to
+   reach the exit, he moves to that node and collects the coins. If no favorable coin collecting
+   opportunity is available or if the steps left are just enough to reach the exit,
+   McDiver follows the pre-calculated shortest path to the exit without further coin collection.
+
+   The rationale for this strategy stemmed from the need to maximize the score while keeping
+   the risk of getting trapped minimal. The coin-to-distance ratio prioritizes lucrative
+   opportunities close by, and the constant check against the steps needed to reach the exit
+   ensures McDiver's safety. This approach was chosen because it offers a balanced and dynamic
+   decision-making process that adapts based on McDiver's current situation in the maze. It allows
+   for opportunistic coin collection while keeping the primary objective of escaping in focus.
 
 2. Are you aware of any areas where your submission is not working as intended?
    If so, describe the issue and what you did to try to diagnose it.  Otherwise,
    describe how you verified that your submission fulfilled its requirements.
 
-   Answer: TODO
+   Answer: The McDiver keeps failing when trying to escape. We tried to go to consulting hours
+   but due to the number of people present and the time allocated to each student, we were not able
+   to really debug it.
 
 3. Did you implement your own priority queue, or add other new classes to the
    project?  If so, describe them here so your grader is aware of their
    existence.
 
-   Answer: TODO
+   Answer:
+   In our implementation of the McDiver project, we did not create a custom priority queue or add
+   new classes to the project. We utilized the existing data structures provided in the codebase,
+   including the priority queue implementation given. Our focus was on effectively leveraging the
+   existing framework and classes, particularly the ShortestPaths algorithm and maze representation,
+   to develop the logic for McDiver's pathfinding and coin collection strategies within the scram
+   phase. This approach allowed us to concentrate on optimizing the algorithm's performance
+   and decision-making processes within the constraints of the provided infrastructure.

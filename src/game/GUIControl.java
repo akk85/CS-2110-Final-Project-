@@ -29,12 +29,11 @@ public class GUIControl {
      * Wait until the GUI animation, if any, is complete.
      */
     public static void waitForAnimation(Maybe<GUI> guiOpt) {
-        // TODO: Avoid inefficient spinning while waiting for GUI
         guiOpt.thenDo(gui -> {
             synchronized (lock) {
                 while (gui.isAnimating()) {
                     try {
-                        lock.wait();  //WE WAIT INSTEAD OF SPINNING
+                        lock.wait();
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                         throw new RuntimeException("Interrupted while waiting for animation");

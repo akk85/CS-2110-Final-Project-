@@ -54,8 +54,6 @@ public class ShortestPaths<Vertex, Edge> {
         Set<Vertex> inQueue = new HashSet<>();
         distances = new HashMap<>();
         bestEdges = new HashMap<>();
-        // TODO: Complete computation of distances and best-path edges
-        // Initialize distances with infinity, source with 0
         distances.put(source, 0.0);
         frontier.add(source, 0.0);
         inQueue.add(source);
